@@ -12,5 +12,8 @@
   ],
   "author": "alon robinson",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "url-pattern": "^1.0.3"
+  }
 }
