@@ -14,15 +14,6 @@ const getMime = (ext) => {
       case '.json':
           contentType = 'application/json';
           break;
-      case '.png':
-          contentType = 'image/png';
-          break;      
-      case '.jpg':
-          contentType = 'image/jpg';
-          break;
-      case '.wav':
-          contentType = 'audio/wav';
-          break;
   }
   return contentType;
 };
@@ -34,7 +25,7 @@ class Router {
       post: {},
     };
   }
-  
+
   get (route, handler) {
     this.registerRoute('get', route, handler);
   }
@@ -53,7 +44,7 @@ class Router {
     res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end("No route registered for " + routeUrl.pathname);
   }
-  
+
 };
 
 module.exports = new Router();
