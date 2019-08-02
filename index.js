@@ -22,21 +22,22 @@ router.get('/favicon.ico', (req, res) => {
 });
 
 router.get('/posts', (req, res) => {
-  const request = http.get('http://jsonplaceholder.typicode.com/posts', (resp) => {
-    let data = '';
-    resp.on('data', (chunk) => {
-      data += chunk;
-    });
-  
-    resp.on('end', () => {
-      res.body = {};
-      res.body.data = JSON.parse(data);
-      res.writeHead(200);
-      res.write(JSON.stringify(res.body));
-      res.end();
-    });
-  })
+  fs.readFile(__dirname + '/posts.json', (err, data) => {
+    if (err) {
+      res.writeHead(500);
+      res.end(JSON.stringify(err));
+      return;
+    }
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.end(data);
+  });
+});
+
+router.get('/posts/:id', (req, res) => {
+
 })
+
+
 
 router.post('/', (req, res) => {
   let data = '';
