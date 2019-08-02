@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+</head>
+<body>
+  <div>
+    <button  onclick="postIt()">POST something</button>
+  </div>
+  <div>
+    <button onclick="getIt()">GET something</button>
+  </div>
+ <script>
+   function postIt () {
+    fetch('http://localhost:3000/', {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, cors, *same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrer: 'no-referrer', // no-referrer, *client
+      body: JSON.stringify({alon: 3, shannon: 1}), // body data type must match "Content-Type" header
+    })
+    .then(response => response.json())
+    .then(res => console.log(res));
+   }
+   
+   function getIt () {
+    fetch('/posts')
+      .then(response => response.json())
+      .then(res => console.log(res)); 
+   }
+ </script>
+</body>
+</html>
